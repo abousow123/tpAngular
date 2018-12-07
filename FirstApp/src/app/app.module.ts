@@ -1,18 +1,37 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { AboutService } from '../Services/about.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AboutComponent } from './about/about.component';
+import { FormsModule } from '@angular/forms';
+
+import { RouterModule, Routes } from '@angular/router';
+import { HttpModule, Http } from '@angular/http';
+import { ContactComponent } from './contact/contact.component';
+import { GalleryComponent } from './gallery/gallery.component';
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'gallery', component: GalleryComponent },
+  { path: '', redirectTo: '/about', pathMatch: 'full' }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AboutComponent,
+    ContactComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule, 
+    RouterModule.forRoot(routes),HttpModule
   ],
-  providers: [],
+  providers: [AboutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
