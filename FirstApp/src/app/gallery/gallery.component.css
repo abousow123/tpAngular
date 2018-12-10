@@ -1,3 +1,7 @@
 .cadre{
     height: 250px;
 }
+
+.clickable{
+    cursor: pointer ;
+}

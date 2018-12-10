@@ -5,14 +5,17 @@
   <div class="panel-heading">Contacts</div>
   <div class="panel-body">
 
-    <form #f="ngForm" (ngSubmit)="onSeach(f.value)">
+    <form #f="ngForm" (ngSubmit)="onSeach(f.value)" >
       <div class="form-group">
         <label >Mot Clé:</label>
-        <input type="text" name="motCle" ngModel required>
+        <input type="text" name="motCle" ngModel required [(ngModel)]="motCle">
         <button type="submit" class="btn btn-primary">Chercher</button>
 
       </div>
     </form>
+
+  <div class="row">
+    
     <div *ngFor="let p of pagePhotos?.hits" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
       <div class="panel panel-primary cadre" >
         <div class="panel panel-heading">
@@ -26,10 +29,24 @@
 
     </div>
 
+  </div>
+  
+
+  
+   <div class="row">
+    <ul class="nav nav-pills">
+      <li [ngClass]="{'active':currentPage==(i+1)}" class="clickable" *ngFor="let page of pages;let i = index"> 
+        <a (click)="goToPage(i)">{{i}}</a>
+      </li>
+    </ul>
+    
+  </div>
+  </div>
+
     </div>
   </div>
   
   
   
-  </div>
+  
           

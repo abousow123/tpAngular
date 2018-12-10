@@ -13,21 +13,36 @@ import { map } from "rxjs/operators";
 export class GalleryComponent implements OnInit {
   pagePhotos: any;
 
+  currentPage: number = 1;
+  size: number = 5;
+  totalPages: number;
+  motCle: string = "";
+  pages:Array<number>=[];
+
   constructor(private http:Http) { }
 
   ngOnInit() {
   }
 
   onSeach(dataForm){
-    console.log(dataForm);
+    
     this.http.get("https://pixabay.com/api/?key=10926720-b4662aa3c9199e2c73d6ccfd6&q="
-    +dataForm.motCle+"&per_page=10&page=1")
+    +dataForm.motCle+"&per_page="+this.size+"&page="+this.currentPage)
     .pipe(map(resp=>resp.json()))
     .subscribe(data=>{
-      console.log(data);
       this.pagePhotos = data;
+      this.totalPages = data.totalHits/this.size ;
+      if(data.totalHits % this.size !=0)  ++this.totalPages;
+      this.pages = new Array(this.totalPages);
     })
+
     
+    
+  }
+
+  goToPage(i){
+    this.currentPage=i+1 ;
+    this.onSeach({motCle:this.motCle});
   }
 
 }
