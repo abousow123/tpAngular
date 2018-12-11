@@ -10,6 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule, Http } from '@angular/http';
 import { ContactComponent } from './contact/contact.component';
 import { GalleryComponent } from './gallery/gallery.component';
+import { GalleryService } from 'src/Services/garelly';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -31,7 +32,7 @@ const routes: Routes = [
     FormsModule, 
     RouterModule.forRoot(routes),HttpModule
   ],
-  providers: [AboutService],
+  providers: [AboutService,GalleryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
