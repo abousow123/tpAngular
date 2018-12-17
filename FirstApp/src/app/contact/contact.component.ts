@@ -12,8 +12,12 @@ export class ContactComponent implements OnInit {
 
   contact: any ;
   motCle: string ;
-  page:number = 0;
+ 
   size:number = 5;
+  currentPage: number = 0;
+
+  pages:Array<number>=[];
+
   constructor(private aboutService:AboutService,private contactService:ContactServiceService) { 
     this.contact = this.aboutService.getInfo() ;
   }
@@ -22,12 +26,17 @@ export class ContactComponent implements OnInit {
     
   }
 
-  doSearch(){
-    this.contactService.getContatcts(this.motCle,this.page,this.size)
+  doSeach(){
+    console.log(this.motCle);
+    
+    this.contactService.getContatcts(this.motCle,this.currentPage,this.size)
     .subscribe(data=>{
-      console.log(data);
+     // console.log(data);
       
       this.contact = data ;
+      this.pages = new Array(data.totalPages)
+      //console.log(this.pages);
+      
     },err=>{
       console.log(err);
       
@@ -37,10 +46,14 @@ export class ContactComponent implements OnInit {
 
 
   chercher(){
-    this.doSearch();
+    this.doSeach();
 
   }
 
+  goToPage(i){
+    this.currentPage=i ;
+    this.doSeach();
+  }
   
 
 
