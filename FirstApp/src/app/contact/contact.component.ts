@@ -11,7 +11,7 @@ import { ContactServiceService } from 'src/Services/contact-service.service';
 export class ContactComponent implements OnInit {
 
   contact: any ;
-  motCle: string ;
+  motCle: string="" ;
  
   size:number = 5;
   currentPage: number = 0;
@@ -23,7 +23,7 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+   this.doSeach();
   }
 
   doSeach(){

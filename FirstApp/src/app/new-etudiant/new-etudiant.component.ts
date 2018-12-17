@@ -13,6 +13,7 @@ import { ContactServiceService } from '../../Services/contact-service.service';
 export class NewEtudiantComponent implements OnInit {
 
   etudiant:Etudiant = new Etudiant();
+  mode:number=1;
 
   constructor(private contactService:ContactServiceService) { }
 
@@ -20,10 +21,11 @@ export class NewEtudiantComponent implements OnInit {
   }
 
   saveEtudiant(){
-    console.log(this.etudiant);
+   
     this.contactService.saveEtudiant(this.etudiant)
     .subscribe(data=>{
-      console.log(data);
+      this.etudiant = data;
+      this.mode=2;
       
     },err=>{
       console.log(err);
