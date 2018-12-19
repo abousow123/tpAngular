@@ -26,6 +26,12 @@
         <td>{{e.dateNaissance}}</td>
         <td>{{e.email}}</td>
         <td>{{e.tel}}</td>
+        <td>
+          <a (click)="onEditEtudiant(e.id)">Edit</a>
+        </td>
+        <td>
+          <a (click)="deleteEtudiant(e)">Delete</a>
+        </td>
       </tr>
     </table>
 

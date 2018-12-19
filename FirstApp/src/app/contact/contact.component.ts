@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AboutService } from 'src/Services/about.service';
 import { ContactServiceService } from 'src/Services/contact-service.service';
+import { Router } from '@angular/router';
+import { Etudiant } from '../../model/etudiant';
 
 
 @Component({
@@ -12,13 +14,15 @@ export class ContactComponent implements OnInit {
 
   contact: any ;
   motCle: string="" ;
+
  
   size:number = 5;
   currentPage: number = 0;
 
-  pages:Array<number>=[];
+  pages:Array<number>;
 
-  constructor(private aboutService:AboutService,private contactService:ContactServiceService) { 
+  constructor(private aboutService:AboutService,private contactService:ContactServiceService,
+    private router:Router) { 
     this.contact = this.aboutService.getInfo() ;
   }
 
@@ -55,6 +59,23 @@ export class ContactComponent implements OnInit {
     this.doSeach();
   }
   
+  onEditEtudiant(id:number){
+     this.router.navigate(['editEtudiant',id]) ;
+     console.log(id);
+  }
+
+  deleteEtudiant(e:Etudiant){
+    this.contactService.deleteEtudiant(e.id)
+    .subscribe(data=>{
+      this.contact.content.splice(
+        this.contact.content.indexOf(e),1
+      );
+    },err=>{
+      console.log(err);
+      
+    })
+
+  }
 
 
 }

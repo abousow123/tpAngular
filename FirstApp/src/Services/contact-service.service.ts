@@ -19,4 +19,20 @@ export class ContactServiceService {
     return this.http.post("http://localhost:8080/contacts/",etudiant)
            .pipe(map(rest=>rest.json()))
   }
+
+
+  getContatct(id:number){
+    return this.http.get("http://localhost:8080/contacts/"+id)
+    .pipe(map(rest=>rest.json()))
+  }
+
+  updateEtudiant(etudiant:Etudiant){
+    return this.http.put("http://localhost:8080/contacts/"+etudiant.id,etudiant)
+    .pipe(map(rest=>rest.json()))
+  }
+
+  deleteEtudiant(id:number){
+    return this.http.delete("http://localhost:8080/contacts/"+id)
+    .pipe(map(rest=>rest.json()));
+  }
 }

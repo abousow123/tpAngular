@@ -13,12 +13,14 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { GalleryService } from 'src/Services/garelly';
 import { NewEtudiantComponent } from './new-etudiant/new-etudiant.component';
 import { NouveauEtudiantComponent } from './nouveau-etudiant/nouveau-etudiant.component';
+import { EditEtudiantComponent } from './edit-etudiant/edit-etudiant.component';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'editEtudiant/:id', component: EditEtudiantComponent },
   { path: 'gallery', component: GalleryComponent },
-  { path: 'newetudiant', component: NouveauEtudiantComponent },
+  { path: 'newetudiant', component: NewEtudiantComponent },
   { path: '', redirectTo: '/about', pathMatch: 'full' }
 ];
 
@@ -29,7 +31,8 @@ const routes: Routes = [
     ContactComponent,
     GalleryComponent,
     NewEtudiantComponent,
-    NouveauEtudiantComponent
+    NouveauEtudiantComponent,
+    EditEtudiantComponent
   ],
   imports: [
     BrowserModule,
